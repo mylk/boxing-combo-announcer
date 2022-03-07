@@ -2,7 +2,7 @@
 
 import argparse
 import random
-from subprocess import call
+from subprocess import run
 import time
 
 def random_int(limit=6):
@@ -15,10 +15,10 @@ def main():
     for i in range(total_punches):
         punches.append(str(random_int()))
 
-    punches_string = ','.join(punches)
+    punches_string = ' '.join(punches)
 
     print(punches_string)
-    call(['espeak', '-s{}'.format(args.speech_speed), punches_string])
+    run(['espeak', '-s{}'.format(args.speech_speed), punches_string], capture_output=True)
     time.sleep(args.wait_time)
 
 if __name__ == '__main__':
